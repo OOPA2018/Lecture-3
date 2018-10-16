@@ -77,6 +77,12 @@ namespace Lecture3
             rhs = lhs;
             lhs = tmp;
         }
+
+        static void GenericsConstrained<T>(T input) where T : IPerson
+        {
+            Console.WriteLine($"Name: {input.Name}, Surname: {input.Surname}");
+        }
+
         public static void GenericsDemo()
         {
             string left = "left", right = "right";
