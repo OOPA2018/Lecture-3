@@ -10,26 +10,46 @@ namespace Lecture3
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Simple function example - look through code:");
+            DateExample();
+            Console.WriteLine();
+
+            Console.WriteLine("Inheritence & interface - look through code:");
+            InheritenceExample();
+            InterfaceDemo();
+            Console.WriteLine();
+
+            Console.WriteLine("Generics demo:");
             GenericsDemo();
             Console.Read();
+            Console.WriteLine();
 
-            Console.WriteLine("Anonymous functions demo:");
+            Console.WriteLine("Anonymous functions demo - look through code");
             AnonymousFunctionsDemo();
             Console.Read();
         }
 
         static void DateExample()
         {
-            
+            var dateFromDefaultConstructor = new Date();
+            var dateFromHelperFunction = Date.CreateDate(10, 10, 2018);
+            var dateFromCopyConsturctor = new Date(dateFromHelperFunction);
 
-            //Show auto-generated properties
+            //Getter
+            var dayOfMonth  = dateFromCopyConsturctor.GetDayOfMonth();
+            //Setter
+            dateFromCopyConsturctor.SetDayOfMonth(dayOfMonth + 1);
+
+            var yearFromAutoProperty = dateFromCopyConsturctor.Year;
         }
 
         static void AnonymousFunctionsDemo()
         {
+            //Syntax for anonymous function (also called lambda expression)
             Func<double, double> normalDensity = (x) => Math.Exp(-x * x / 2.0) / Math.Sqrt(2 * Math.PI);
             double integral = IntegrateCompTrapezium(normalDensity, -10, 10, 10000);
             Console.WriteLine("Integral = {0}", integral);
+            //Method with a matching signature (Func<double, double>) can also be used:
             double integral2 = IntegrateCompTrapezium(NormalDensityMethod, -10, 10, 10000);
             Console.WriteLine("Integral = {0}", integral2);
         }
